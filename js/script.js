@@ -243,7 +243,7 @@ function irParaCheckout() {
 
   // Simula tempo de redirecionamento
   setTimeout(() => {
-    window.location.href = "https://go.disruptybr.shop/yitnlpc5t1"; // ⬅️ coloque o seu link real aqui
+    window.location.href = "https://pay.br-pagamentoseguro.site/65XDZB8QqK7gVJw"; // ⬅️ coloque o seu link real aqui
   }, 1200);
 }
 
@@ -277,5 +277,6 @@ function irParaCheckout() {
 
   atualizarContador(); // inicia
 }
+
 
 
